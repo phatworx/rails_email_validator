@@ -13,7 +13,7 @@ class EmailValidator < ActiveModel::EachValidator
     Resolv::DNS.open do |dns|
       mx = dns.getresources(domain, Resolv::DNS::Resource::IN::MX)
     end
-    mx.size > 0
+    not mx.nil? and mx.size > 0
   end
 
   # main validator for email

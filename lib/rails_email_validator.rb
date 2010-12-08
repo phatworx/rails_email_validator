@@ -34,6 +34,6 @@ class EmailValidator < ActiveModel::EachValidator
     end
 
     # email valid
-    record.errors[attribute] << :invalid unless valid
+    record.errors.add(attribute, :invalid) unless valid
   end
 end

@@ -23,7 +23,9 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "init.rb",
     "lib/rails_email_validator.rb",
+    "rails_email_validator.gemspec",
     "test/helper.rb",
     "test/test_rails_email_validator.rb"
   ]

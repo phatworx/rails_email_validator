@@ -4,6 +4,9 @@
 Add the following line to your Gemfile
   gem "rails_email_validator"
 
+If you want to use it as plugin
+  rails plugin install git://github.com/traxanos/rails_email_validator.git
+
 == Using
 Use to validate email
   validate :email => true

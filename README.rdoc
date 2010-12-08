@@ -1,7 +1,7 @@
 = rails_email_validator
 
 == Installation
-To install rails_email_validator add
+Add the following line to your Gemfile
   gem "rails_email_validator"
 
 == Using
@@ -30,6 +30,5 @@ Use email validation without mx validation
 
 == Copyright
 
-Copyright (c) 2010 Marco Scholl. See LICENSE.txt for
-further details.
+Copyright (c) 2010 Marco Scholl. See LICENSE.txt for further details.
 

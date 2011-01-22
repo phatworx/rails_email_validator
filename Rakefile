@@ -33,6 +33,17 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
+namespace :cover_me do
+  task :report do
+    require 'cover_me'
+    CoverMe.complete!
+  end
+end
+
+task :test do
+  Rake::Task['cover_me:report'].invoke
+end
+
 task :default => :test
 
 require 'rake/rdoctask'

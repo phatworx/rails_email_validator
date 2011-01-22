@@ -1,6 +1,6 @@
-
 require 'active_model'
 
+# Validator for email
 class EmailValidator < ActiveModel::EachValidator
   # check the options for do mx validation
   def validate_mx?
@@ -20,15 +20,19 @@ class EmailValidator < ActiveModel::EachValidator
   # main validator for email
   def validate_each(record, attribute, value)
     unless value.blank?
-      # split local and domain part
-      (local_part, domain_part) = value.split('@', 2)
-
       # pre var
       valid = true
 
-      # check syntax
-      valid = false unless local_part =~ /\A[A-Za-z0-9.!\#$%&'*+-\/=?^_`{|}~]+\Z/
-      valid = false unless domain_part =~ /\A((?:[-a-zA-Z0-9]+\.)+[a-zA-Z]{2,})\Z/
+      if valid
+        # split local and domain part
+        (local_part, domain_part) = value.to_s.split('@', 2)
+      end
+
+      if valid
+        # check syntax
+        valid = false unless local_part =~ /\A[A-Za-z0-9.!\#$%&'*+-\/=?^_`{|}~]+\Z/
+        valid = false unless domain_part =~ /\A((?:[-a-zA-Z0-9]+\.)+[a-zA-Z]{2,})\Z/
+      end
 
       # check mx
       if valid and validate_mx?

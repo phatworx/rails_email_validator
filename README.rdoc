@@ -9,10 +9,10 @@ If you want to use it as plugin
 
 == Using
 Use to validate email
-  validates :email => true
+  validates :email, :email => true
 
 Use email validation without mx validation
-  validates :email => { :validate_mx => false }
+  validates :email, :email => { :validate_mx => false }
 
 
 == Features

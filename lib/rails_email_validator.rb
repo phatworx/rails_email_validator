@@ -20,6 +20,7 @@ class EmailValidator < ActiveModel::EachValidator
   # main validator for email
   def validate_each(record, attribute, value)
     unless value.blank?
+
       # pre var
       valid = true
 
@@ -28,10 +29,19 @@ class EmailValidator < ActiveModel::EachValidator
         (local_part, domain_part) = value.to_s.split('@', 2)
       end
 
+      # idn suport if available
+      begin
+        require 'idn'
+        # encode domain part
+        domain_part = IDN::Idna.toASCII(domain_part)
+      rescue LoadError
+      rescue IDN::Idna::IdnaError
+      end
+
       if valid
         # check syntax
         valid = false unless local_part =~ /\A[A-Za-z0-9.!\#$%&'*+-\/=?^_`{|}~]+\Z/
-        valid = false unless domain_part =~ /\A((?:[-a-zA-Z0-9]+\.)+[a-zA-Z]{2,})\Z/
+        valid = false unless domain_part =~ /\A((?:[-a-zA-Z0-9]+\.)+[a-zA-Z]{2,})(.|)\Z/
       end
 
       # check mx

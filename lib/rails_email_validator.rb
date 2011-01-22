@@ -7,6 +7,7 @@ class EmailValidator < ActiveModel::EachValidator
     options[:validate_mx].nil? or options[:validate_mx] == true
   end
 
+  # check the options for idn support
   def allow_idn?
     options[:allow_idn].nil? or options[:allow_idn] == true
   end
@@ -21,6 +22,7 @@ class EmailValidator < ActiveModel::EachValidator
     not mx.nil? and mx.size > 0
   end
 
+  # convert an unicode domain_part to asccii for validation
   def convert_idn(domain_part)
     if allow_idn?
       # idn suport if available

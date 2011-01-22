@@ -7,6 +7,10 @@ class EmailValidator < ActiveModel::EachValidator
     options[:validate_mx].nil? or options[:validate_mx] == true
   end
 
+  def allow_idn?
+    options[:allow_idn].nil? or options[:allow_idn] == true
+  end
+
   # validate if an mx exists on domain
   def has_mx?(domain)
     require 'resolv'
@@ -17,26 +21,35 @@ class EmailValidator < ActiveModel::EachValidator
     not mx.nil? and mx.size > 0
   end
 
+  def convert_idn(domain_part)
+    if allow_idn?
+      # idn suport if available
+      begin
+        require 'idn'
+        # encode domain part
+        return IDN::Idna.toASCII(domain_part)
+      rescue LoadError
+      rescue IDN::Idna::IdnaError
+      end
+    end
+    domain_part
+  end
+
   # main validator for email
   def validate_each(record, attribute, value)
     unless value.blank?
 
       # pre var
       valid = true
+      local_part = nil
+      domain_part = nil
 
       if valid
         # split local and domain part
         (local_part, domain_part) = value.to_s.split('@', 2)
       end
 
-      # idn suport if available
-      begin
-        require 'idn'
-        # encode domain part
-        domain_part = IDN::Idna.toASCII(domain_part)
-      rescue LoadError
-      rescue IDN::Idna::IdnaError
-      end
+      domain_part = convert_idn domain_part
 
       if valid
         # check syntax

@@ -10,4 +10,5 @@ group :development do
   gem "jeweler", "~> 1.5.1"  
   gem "cover_me"
   gem "idn", :git => "git://github.com/mihu/idn.git"
+  gem "rspec"
 end

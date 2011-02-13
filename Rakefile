@@ -17,7 +17,7 @@ Jeweler::Tasks.new do |gem|
   gem.license = "MIT"
   gem.summary = %Q{an email validator for rails}
   gem.description = %Q{a class to validate emails. it builded for rails}
-  gem.email = "develop@marco-scholl.de"
+  gem.email = "team@phatworx.de"
   gem.authors = ["Marco Scholl"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)

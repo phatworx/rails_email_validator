@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors = ["Marco Scholl"]
   s.date = %q{2011-02-13}
   s.description = %q{a class to validate emails. it builded for rails}
-  s.email = %q{develop@marco-scholl.de}
+  s.email = %q{team@phatworx.de}
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"

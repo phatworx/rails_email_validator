@@ -32,6 +32,11 @@ If you want to support idn for email, you must install idn.
 fork with ruby 1.9 support
   gem "idn", :git => "git://github.com/mihu/idn.git"
 
+== Maintainers
+
+* Team Phatworx (http://github.com/phatworx)
+* Marco Scholl (http://github.com/traxanos)
+
 == Contributing to rails_email_validator
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet

@@ -7,8 +7,9 @@ source "http://rubygems.org"
 # Include everything needed to run rake, tests, features, etc.
 group :development do
   gem "bundler", "~> 1.0.0"
-  gem "jeweler", "~> 1.5.1"  
-  gem "cover_me"
+  gem "jeweler", "~> 1.5.2"  
+  gem 'simplecov', '>= 0.3.8', :require => false
   gem "idn", :git => "git://github.com/mihu/idn.git"
-  gem "rspec"
+  gem "rspec", "~> 2.3.0"
+  gem "yard", "~> 0.6.0"
 end

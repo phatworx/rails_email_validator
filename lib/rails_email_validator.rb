@@ -57,7 +57,7 @@ class EmailValidator < ActiveModel::EachValidator
 
       if valid
         # check syntax
-        valid = false unless local_part =~ /\A[A-Za-z0-9.!\#$%&'*+-\/=?^_`{|}~]+\Z/
+        valid = false unless local_part =~ /\A[a-z0-9!\#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!\#$%&'*+\/=?^_`{|}~-]+)*\Z/
         valid = false unless domain_part =~ /\A((?:[-a-zA-Z0-9]+\.)+[a-zA-Z]{2,})(.|)\Z/
       end
 

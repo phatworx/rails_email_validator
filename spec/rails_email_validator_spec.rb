@@ -87,7 +87,10 @@ describe EmailValidator do
             'email',
             'test@localhost',
             'müller@example.net',
-            'test@example.net..'
+            'test@example.net..',
+            'comma,@example.net',
+            '.dot@example.net',
+            'dot.@example.net',
         ].each do |email|
 
           @object.email = email

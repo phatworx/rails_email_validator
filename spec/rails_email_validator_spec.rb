@@ -66,8 +66,7 @@ describe EmailValidator do
             'test@sub1.example.net',
             'test@sub1.example.co.uk',
             'test@sub2.sub1.example.net',
-            'test@sub2.sub1.example.tttttttt',
-            'test@mexample.net.'
+            'test@sub2.sub1.example.tttttttt'
         ].each do |email|
 
           @object.email = email

@@ -22,7 +22,8 @@ describe EmailValidator do
 
       it "should validate without errors" do
         [
-            'test@marco-scholl.de'
+            'test@marco-scholl.de',
+            'Test@marco-scholl.de'
         ].each do |email|
 
           @object.email = email
@@ -36,7 +37,8 @@ describe EmailValidator do
     describe "email validation with invalid mx host" do
       it "should validate with errors" do
         [
-            'test@invalidmx.marco-scholl.de'
+            'test@invalidmx.marco-scholl.de',
+            'test@Invalidmx.Marco-scholl.de'
         ].each do |email|
 
           @object.email = email
@@ -63,9 +65,11 @@ describe EmailValidator do
             '',
             ' ',
             'test@example.net',
+            'Test@Example.net',
             'test@sub1.example.net',
             'test@sub1.example.co.uk',
             'test@sub2.sub1.example.net',
+            'test@sub2.sub1.example.NET',
             'test@sub2.sub1.example.tttttttt'
         ].each do |email|
 
@@ -86,10 +90,13 @@ describe EmailValidator do
             'email',
             'test@localhost',
             'müller@example.net',
+            'mÜller@example.net',
             'test@example.net..',
             'comma,@example.net',
+            'commA,@Example.net',
             '.dot@example.net',
             'dot.@example.net',
+            'Dot.@Example.net',
         ].each do |email|
 
           @object.email = email
@@ -119,10 +126,10 @@ describe EmailValidator do
 
   describe "email vaildation with disabled idn support" do
     before do
-      class ValidateEmailDisabledIdm < ValidateEmail
+      class ValidateEmailDisabledIdn < ValidateEmail
         validates :email, :email => {:allow_idn => false}
       end
-      @object = ValidateEmailDisabledIdm.new
+      @object = ValidateEmailDisabledIdn.new
     end
 
     describe "valid email with idn domain" do
@@ -131,10 +138,9 @@ describe EmailValidator do
             'mueller@müller.de',
             'test@räksmörgås.nu',
             'test@sub1.räksmörgås.nu',
-            'test@xn--rksmrgs-5wao1o.nu',
-            'test@sub1.xn--rksmrgs-5wao1o.nu'
+#            'test@xn--rksmrgs-5wao1o.nu',
+#            'test@sub1.xn--rksmrgs-5wao1o.nu'
         ].each do |email|
-
           @object.email = email
           @object.should_not be_valid
         end

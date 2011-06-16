@@ -1,5 +1,7 @@
 = rails_email_validator
 
+http://travis-ci.org/phatworx/rails_email_validator.png
+
 == Installation
 Add the following line to your Gemfile
   gem "rails_email_validator"

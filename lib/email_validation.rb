@@ -53,7 +53,7 @@ class EmailValidation
     if valid
       # check syntax
       valid = false unless local_part =~ /\A[a-z0-9!\#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!\#$%&'*+\/=?^_`{|}~-]+)*\Z/i
-      valid = false unless domain_part =~ /\A(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\Z/i
+      valid = false unless domain_part =~ /\A(?:[a-z0-9](?:[_a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\Z/i
     end
 
     # check mx

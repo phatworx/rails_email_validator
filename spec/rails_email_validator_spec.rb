@@ -49,7 +49,7 @@ describe EmailValidator do
     end
   end
 
-  describe "email vaildation with disabled mx check" do
+  describe "email validation with disabled mx check" do
     before do
       class ValidateEmailWithoutMx < ValidateEmail
         validates :email, :email => {:validate_mx => false}
@@ -70,7 +70,10 @@ describe EmailValidator do
             'test@sub1.example.co.uk',
             'test@sub2.sub1.example.net',
             'test@sub2.sub1.example.NET',
-            'test@sub2.sub1.example.tttttttt'
+            'test@sub2.sub1.example.tttttttt',
+            'first.last@sub1.example.nu',
+            'first_last@sub1.this_is.com',            
+            'first-last@sub1.test-this.com'            
         ].each do |email|
 
           @object.email = email
@@ -97,8 +100,10 @@ describe EmailValidator do
             '.dot@example.net',
             'dot.@example.net',
             'Dot.@Example.net',
+            'underscore@_exmaple.com',
+            'underscore@exmaple_.com',
         ].each do |email|
-
+          puts email
           @object.email = email
           @object.should_not be_valid
 
@@ -124,7 +129,7 @@ describe EmailValidator do
 
   end
 
-  describe "email vaildation with disabled idn support" do
+  describe "email validation with disabled idn support" do
     before do
       class ValidateEmailDisabledIdn < ValidateEmail
         validates :email, :email => {:allow_idn => false}

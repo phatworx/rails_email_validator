@@ -43,3 +43,5 @@ pkg
 #
 # For vim:
 #*.swp
+
+.rvmrc

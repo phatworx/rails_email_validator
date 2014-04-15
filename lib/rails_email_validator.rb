@@ -78,7 +78,7 @@ class EmailValidator < ActiveModel::EachValidator
 
         # check a
         if !valid and validate_mx?
-          if  has_a? domain_part
+          if has_a? domain_part
             valid = true
           end
         end

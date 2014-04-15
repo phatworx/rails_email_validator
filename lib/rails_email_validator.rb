@@ -24,6 +24,17 @@ class EmailValidator < ActiveModel::EachValidator
     not mx.nil? and mx.size > 0
   end
 
+
+  # validate if an a exists on domain
+  def has_a?(domain)
+    require 'resolv'
+    a = []
+    Resolv::DNS.open do |dns|
+      a = dns.getresources(domain, Resolv::DNS::Resource::IN::A)
+    end
+    not a.nil? and a.size > 0
+  end
+
   # convert an unicode domain_part to asccii for validation
   def convert_idn(domain_part)
     if allow_idn?
@@ -64,7 +75,17 @@ class EmailValidator < ActiveModel::EachValidator
       # check mx
       if valid and validate_mx?
         valid = false unless has_mx? domain_part
+
+        # check a
+        if !valid and validate_mx?
+          if  has_a? domain_part
+            valid = true
+          end
+        end
+
       end
+
+
 
       # email valid
       record.errors.add(attribute, :invalid) unless valid

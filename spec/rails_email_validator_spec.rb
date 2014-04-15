@@ -23,7 +23,8 @@ describe EmailValidator do
       it "should validate without errors" do
         [
             'test@marco-scholl.de',
-            'Test@marco-scholl.de'
+            'Test@marco-scholl.de',
+            'test@dt-a.net',
         ].each do |email|
 
           @object.email = email
